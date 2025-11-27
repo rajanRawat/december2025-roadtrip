@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Great Indian Family Adventure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FAF7F2;
+            --charcoal: #2C2C2C;
+            --forest-green: #2D5A3D;
+            --gold: #C9A227;
+            --royal-blue: #1E4B8E;
+            --terracotta: #D35D2F;
+            --saffron: #F4A83D;
+            --deep-purple: #5B3A6B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(44, 44, 44, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav a:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+        }
+
+        .nav a.jungle { border-bottom: 3px solid var(--forest-green); color: var(--cream); }
+        .nav a.royal { border-bottom: 3px solid var(--royal-blue); color: var(--cream); }
+        .nav a.spiritual { border-bottom: 3px solid var(--saffron); color: var(--cream); }
+
+        /* Cover Section */
+        .cover {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .cover-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(45, 90, 61, 0.85), rgba(201, 162, 39, 0.7));
+            animation: slowZoom 30s ease-in-out infinite alternate;
+        }
+
+        /* IMAGE PLACEHOLDER: Add your cover image here */
+        .cover-bg.has-image {
+            background: linear-gradient(135deg, rgba(45, 90, 61, 0.85), rgba(201, 162, 39, 0.7)),
+                        url('images/IMG_01_COVER.jpg') center/cover;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: var(--cream);
+            padding: 2rem;
+        }
+
+        .cover-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 4px 20px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .cover-content .subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cover-content .tagline {
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            padding: 1rem 2rem;
+            border: 2px solid var(--gold);
+            display: inline-block;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: var(--cream);
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* Section Styles */
+        .section {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Day Headers */
+        .day-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .day-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .day-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .day-header .theme {
+            font-size: 1.1rem;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .card-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .card-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+        }
+
+        /* Placeholder styling */
+        .image-placeholder {
+            background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .image-placeholder .placeholder-text {
+            background: rgba(255,255,255,0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 2px dashed #aaa;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-body h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-body p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* Itinerary Timeline */
+        .itinerary {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .itinerary h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid currentColor;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 3.5rem;
+            top: 2.5rem;
+            bottom: -1rem;
+            width: 2px;
+            background: currentColor;
+            opacity: 0.3;
+        }
+
+        .time {
+            font-weight: 600;
+            font-size: 0.9rem;
+            min-width: 70px;
+            padding: 0.5rem;
+            text-align: center;
+            border-radius: 8px;
+            background: currentColor;
+            color: white;
+            height: fit-content;
+        }
+
+        .time-content {
+            flex: 1;
+        }
+
+        .time-content h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .time-content p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Hero Images */
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 16px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5));
+        }
+
+        .hero-caption {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        /* Section Themes */
+        .jungle { 
+            background: linear-gradient(180deg, var(--cream) 0%, #E8F0E5 100%);
+        }
+        .jungle .day-badge { background: var(--forest-green); color: white; }
+        .jungle .itinerary h3 { color: var(--forest-green); }
+        .jungle .time { background: var(--forest-green); }
+        .jungle .timeline-item::before { background: var(--forest-green); }
+
+        .royal { 
+            background: linear-gradient(180deg, var(--cream) 0%, #E5EBF5 100%);
+        }
+        .royal .day-badge { background: var(--royal-blue); color: white; }
+        .royal .itinerary h3 { color: var(--royal-blue); }
+        .royal .time { background: var(--royal-blue); }
+        .royal .timeline-item::before { background: var(--royal-blue); }
+
+        .spiritual { 
+            background: linear-gradient(180deg, var(--cream) 0%, #F5EFE5 100%);
+        }
+        .spiritual .day-badge { background: var(--saffron); color: var(--charcoal); }
+        .spiritual .itinerary h3 { color: var(--deep-purple); }
+        .spiritual .time { background: var(--deep-purple); }
+        .spiritual .timeline-item::before { background: var(--deep-purple); }
+
+        /* Accommodation Badge */
+        .accommodation {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .accommodation-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .accommodation-logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            background-color: #f0f0f0;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ccc;
+            flex-shrink: 0;
+        }
+
+        .accommodation-logo .logo-placeholder {
+            font-size: 0.7rem;
+            color: #999;
+            font-weight: 500;
+        }
+
+        /* Hide placeholder text when image loads */
+        .accommodation-logo[style*="url"] .logo-placeholder {
+            display: none;
+        }
+
+        .accommodation-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+        }
+
+        .accommodation-info p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Body Text Blocks */
+        .body-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+
+        .body-text.centered {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--charcoal);
+            color: var(--cream);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .footer h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .footer p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Animations on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                gap: 0.5rem;
+                padding: 0.75rem 1rem;
+                flex-wrap: wrap;
+            }
+
+            .nav a {
+                font-size: 0.7rem;
+                padding: 0.4rem 0.6rem;
+            }
+
+            .section {
+                padding: 5rem 1rem;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .timeline-item::before {
+                display: none;
+            }
+
+            .time {
+                align-self: flex-start;
+            }
+        }
+
+        /* Highlight Text */
+        .highlight {
+            background: linear-gradient(120deg, var(--gold) 0%, var(--gold) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 0.3em;
+            background-position: 0 88%;
+        }
+
+        /* Special Elements */
+        .divider {
+            width: 100px;
+            height: 4px;
+            background: currentColor;
+            margin: 2rem auto;
+            border-radius: 2px;
+        }
+
+        .teaser-banner {
+            background: linear-gradient(135deg, rgba(45, 90, 61, 0.9), rgba(201, 162, 39, 0.8));
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .teaser-banner h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .teaser-banner p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="#cover">Home</a>
+        <a href="#day1" class="jungle">Day 1</a>
+        <a href="#day2" class="jungle">Day 2</a>
+        <a href="#day3" class="royal">Day 3</a>
+        <a href="#day4" class="spiritual">Day 4</a>
+    </nav>
+
+    <!-- Cover -->
+    <section class="cover" id="cover">
+        <!-- IMG_01: Replace background-image in .cover-bg below -->
+        <div class="cover-bg" style="background: linear-gradient(135deg, rgba(45, 90, 61, 0.85), rgba(201, 162, 39, 0.7)), url('images/IMG_01_COVER.jpg') center/cover;"></div>
+        <div class="cover-content">
+            <h1>The Great Indian<br>Family Adventure</h1>
+            <p class="subtitle">Jungle Tales, Royal Forts, & Sacred Lights</p>
+            <p class="tagline">A 4-Day Journey Through Wonder</p>
+        </div>
+        <div class="scroll-indicator" onclick="document.getElementById('day1').scrollIntoView()">↓</div>
+    </section>
+
+    <!-- Day 1 -->
+    <section class="section jungle" id="day1">
+        <div class="section-content">
+            <div class="day-header fade-in">
+                <span class="day-badge">Day One</span>
+                <h2>The Call of the Wild</h2>
+                <p class="theme">Smooth Journey & Jungle Anticipation</p>
+            </div>
+
+            <!-- IMG_02: Delhi Mumbai Expressway Hero -->
+            <div class="hero-image fade-in image-placeholder" style="background-image: url('images/IMG_02_DME_HIGHWAY.jpg');">
+                <span class="placeholder-text">IMG_02: Delhi Mumbai Expressway</span>
+                <span class="hero-caption">🛣️ The Open Road Awaits</span>
+            </div>
+
+            <p class="body-text centered fade-in">
+                We leave the city behind, cruising smoothly along the modern <span class="highlight">Delhi-Mumbai Expressway</span>. 
+                Watch as the landscape changes on our comfortable drive toward tiger territory. By afternoon, we arrive at our 
+                jungle oasis. The evening is yours to relax by the pool and prepare the little ones for tomorrow's big safari adventure!
+            </p>
+
+            <div class="accommodation fade-in">
+                <div class="accommodation-logo" style="background-image: url('images/LOGO_AARAM_BAGH.png');">
+                    <span class="logo-placeholder">Logo</span>
+                </div>
+                <div class="accommodation-info">
+                    <h4>Aaram Bagh Villa</h4>
+                    <p>Your jungle retreat in Sawai Madhopur</p>
+                </div>
+            </div>
+
+            <div class="card-grid">
+                <div class="card fade-in">
+                    <!-- IMG_03: Honda City / Car on Highway -->
+                    <div class="card-image image-placeholder" style="background-image: url('images/IMG_03_SCENIC_DRIVE.jpg');">
+                        <span class="placeholder-text">IMG_03: Scenic Drive</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Scenic Drive</h3>
+                        <p>The modern expressway offers smooth, comfortable travel with rest stops along the way. Perfect for little travelers!</p>
+                    </div>
+                </div>
+                <div class="card fade-in">
+                    <!-- IMG_04: Tiger Teaser -->
+                    <div class="card-image image-placeholder" style="background-image: url('images/IMG_04_TIGER_TEASER.jpg');">
+                        <span class="placeholder-text">IMG_04: Tiger Teaser</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Tiger Territory</h3>
+                        <p>Tomorrow awaits the thrill of spotting the majestic Bengal Tiger in its natural habitat. Get ready!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="itinerary fade-in">
+                <h3>📋 Day 1 Itinerary</h3>
+                <div class="timeline-item">
+                    <span class="time">09:00</span>
+                    <div class="time-content">
+                        <h4>Departure from Noida</h4>
+                        <p>Via smooth DND – KMP – DME route</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time">12:00</span>
+                    <div class="time-content">
+                        <h4>Lunch Break</h4>
+                        <p>At a DME wayside plaza with family-friendly amenities</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time">15:00</span>
+                    <div class="time-content">
+                        <h4>Arrival & Check-in</h4>
+                        <p>Aaram Bagh Villa, Sawai Madhopur</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time">Evening</span>
+                    <div class="time-content">
+                        <h4>Rest & Safari Briefing</h4>
+                        <p>Dinner and early bedtime for tomorrow's adventure!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="teaser-banner fade-in">
+                <h4>🐯 Tomorrow's Highlight</h4>
+                <p>Early morning tiger safari in Ranthambore National Park!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day 2 -->
+    <section class="section jungle" id="day2">
+        <div class="section-content">
+            <div class="day-header fade-in">
+                <span class="day-badge">Day Two</span>
+                <h2>Stripes & Sunsets</h2>
+                <p class="theme">Thrills and Royal Arrival</p>
+            </div>
+
+            <!-- IMG_05: Tiger Safari Hero -->
+            <div class="hero-image fade-in image-placeholder" style="background-image: url('images/IMG_05_TIGER_SAFARI.jpg');">
+                <span class="placeholder-text">IMG_05: Ranthambore Tiger Safari</span>
+                <span class="hero-caption">🐅 On the Hunt for Stripes</span>
+            </div>
+
+            <p class="body-text centered fade-in">
+                An early wake-up call for a thrilling <span class="highlight">open-top Canter safari</span> in Zone 6! 
+                Keep your cameras ready and eyes peeled—we are on the hunt for the majestic Bengal Tiger and other 
+                incredible wildlife in their natural habitat.
+            </p>
+
+            <div class="card-grid">
+                <div class="card fade-in">
+                    <!-- IMG_06: Bengal Tiger -->
+                    <div class="card-image image-placeholder" style="background-image: url('images/IMG_06_BENGAL_TIGER.jpg');">
+                        <span class="placeholder-text">IMG_06: Bengal Tiger</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Ranthambore Safari</h3>
+                        <p>Zone 6 offers some of the best tiger sighting opportunities. Watch for deer, peacocks, and the king himself!</p>
+                    </div>
+                </div>
+                <div class="card fade-in">
+                    <!-- IMG_07: Journey to Jaipur -->
+                    <div class="card-image image-placeholder" style="background-image: url('images/IMG_07_JAIPUR_JOURNEY.jpg');">
+                        <span class="placeholder-text">IMG_07: Journey to Jaipur</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Journey to Jaipur</h3>
+                        <p>From jungle to royalty—we drive to the magnificent Pink City for our next adventure.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="body-text centered fade-in">
+                After the thrill of the jungle, we drive to the royal city of <span class="highlight">Jaipur</span>. 
+                We check into the beautiful House of Amer to freshen up before ending the day with magic: the spectacular 
+                Light & Sound Show at Amer Fort, bringing history to life for all ages.
+            </p>
+
+            <div class="accommodation fade-in">
+                <div class="accommodation-logo" style="background-image: url('images/LOGO_HOUSE_OF_AMER.png');">
+                    <span class="logo-placeholder">Logo</span>
+                </div>
+                <div class="accommodation-info">
+                    <h4>House of Amer</h4>
+                    <p>Royal comfort in the Pink City</p>
+                </div>
+            </div>
+
+            <!-- IMG_08: Amer Fort Light Show -->
+            <div class="hero-image fade-in image-placeholder" style="background-image: url('images/IMG_08_AMER_LIGHT_SHOW.jpg');">
+                <span class="placeholder-text">IMG_08: Amer Fort Light & Sound Show</span>
+                <span class="hero-caption">✨ Amer Fort Light & Sound Show</span>
+            </div>
+
+            <div class="itinerary fade-in" style="border-left: 4px solid var(--forest-green);">
+                <h3>📋 Day 2 Itinerary</h3>
+                <div class="timeline-item">
+                    <span class="time">06:00</span>
+                    <div class="time-content">
+                        <h4>Safari Pickup</h4>
+                        <p>Early morning departure for the jungle</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time">06:30</span>
+                    <div class="time-content">
+                        <h4>Ranthambore Safari (Zone 6)</h4>
+                        <p>3-hour open-top Canter safari through tiger territory</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time">11:00</span>
+                    <div class="time-content">
+                        <h4>Scenic Drive to Jaipur</h4>
+                        <p>Watch the landscape transform from jungle to royal Rajasthan</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time">15:00</span>
+                    <div class="time-content">
+                        <h4>Check-in at House of Amer</h4>
+                        <p>Freshen up and rest</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time">18:30</span>
+                    <div class="time-content">
+                        <h4>Amer Fort Light & Sound Show</h4>
+                        <p>History comes alive under the stars!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day 3 -->
+    <section class="section royal" id="day3">
+        <div class="section-content">
+            <div class="day-header fade-in">
+                <span class="day-badge">Day Three</span>
+                <h2>Royals & Divine Tales</h2>
+                <p class="theme">Grandeur and the Shift to Spirituality</p>
+            </div>
+
+            <!-- IMG_09: Amer Fort Daytime Hero -->
+            <div class="hero-image fade-in image-placeholder" style="background-image: url('images/IMG_09_AMER_FORT_DAY.jpg');">
+                <span class="placeholder-text">IMG_09: Amer Fort (Daytime)</span>
+                <span class="hero-caption">🏯 The Mighty Amer Fort</span>
+            </div>
+
+            <p class="body-text centered fade-in">
+                This morning, we explore the massive ramparts of <span class="highlight">Amer Fort</span>. 
+                It's a real-life castle experience the kids will love! Following a guided tour and a visit to the rugged 
+                Jaigarh Fort, we enjoy a local lunch before beginning our journey toward the sacred twin cities of 
+                Mathura and Vrindavan.
+            </p>
+
+            <div class="card-grid">
+                <div class="card fade-in">
+                    <!-- IMG_10: Amer Fort Interior -->
+                    <div class="card-image image-placeholder" style="background-image: url('images/IMG_10_AMER_FORT_CARD.jpg');">
+                        <span class="placeholder-text">IMG_10: Amer Fort Interior</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Amer Fort</h3>
+                        <p>Explore grand courtyards, mirrored halls, and panoramic views. A UNESCO World Heritage Site!</p>
+                    </div>
+                </div>
+                <div class="card fade-in">
+                    <!-- IMG_11: Jaigarh Fort -->
+                    <div class="card-image image-placeholder" style="background-image: url('images/IMG_11_JAIGARH_FORT.jpg');">
+                        <span class="placeholder-text">IMG_11: Jaigarh Fort</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Jaigarh Fort</h3>
+                        <p>Home to the world's largest cannon on wheels! Kids love the massive Jaivana cannon.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider" style="background: var(--royal-blue);"></div>
+
+            <p class="body-text centered fade-in" style="margin-top: 2rem;">
+                As we leave royal Rajasthan behind, we enter the sacred land of <span class="highlight">Lord Krishna</span>. 
+                The spiritual energy of Mathura-Vrindavan awaits!
+            </p>
+
+            <div class="accommodation fade-in">
+                <div class="accommodation-logo" style="background-image: url('images/LOGO_SKS_GRAND.png');">
+                    <span class="logo-placeholder">Logo</span>
+                </div>
+                <div class="accommodation-info">
+                    <h4>SKS Grand Palace</h4>
+                    <p>Your spiritual base in Mathura</p>
+                </div>
+            </div>
+
+            <div class="itinerary fade-in" style="border-left: 4px solid var(--royal-blue);">
+                <h3>📋 Day 3 Itinerary</h3>
+                <div class="timeline-item">
+                    <span class="time">08:00</span>
+                    <div class="time-content">
+                        <h4>Guided Tour of Amer Fort</h4>
+                        <p>Explore the magnificent palace complex</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time">10:30</span>
+                    <div class="time-content">
+                        <h4>Visit to Jaigarh Fort</h4>
+                        <p>See the massive Jaivana cannon</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time">12:30</span>
+                    <div class="time-content">
+                        <h4>Lunch in Amer Town</h4>
+                        <p>Authentic Rajasthani cuisine</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time">13:45</span>
+                    <div class="time-content">
+                        <h4>Drive to Mathura</h4>
+                        <p>Journey to Krishna's birthplace</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time">17:30</span>
+                    <div class="time-content">
+                        <h4>Arrival & Check-in</h4>
+                        <p>SKS Grand Palace, Mathura</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day 4 -->
+    <section class="section spiritual" id="day4">
+        <div class="section-content">
+            <div class="day-header fade-in">
+                <span class="day-badge">Day Four</span>
+                <h2>The Land of Lights</h2>
+                <p class="theme">Divine Experiences & Dazzling Finales</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card fade-in">
+                    <!-- IMG_12: Krishna Janmabhoomi -->
+                    <div class="card-image image-placeholder" style="background-image: url('images/IMG_12_KRISHNA_JANMABHOOMI.jpg');">
+                        <span class="placeholder-text">IMG_12: Krishna Janmabhoomi</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Krishna Janmabhoomi</h3>
+                        <p>Visit the sacred birthplace of Lord Krishna—feel the divine energy of this ancient site.</p>
+                    </div>
+                </div>
+                <div class="card fade-in">
+                    <!-- IMG_13: ISKCON Vrindavan -->
+                    <div class="card-image image-placeholder" style="background-image: url('images/IMG_13_ISKCON_VRINDAVAN.jpg');">
+                        <span class="placeholder-text">IMG_13: ISKCON Vrindavan</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>ISKCON Vrindavan</h3>
+                        <p>Experience the evening aarti and melodious bhajans at this beautiful temple.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="body-text centered fade-in">
+                Our final day immerses us in the vibrant spirituality of <span class="highlight">Lord Krishna's land</span>. 
+                We visit the historic Krishna Janmabhoomi Temple in the morning. After a restful afternoon, we head to 
+                Vrindavan for evening darshan at ISKCON.
+            </p>
+
+            <!-- IMG_14: Prem Mandir Light Show -->
+            <div class="hero-image fade-in image-placeholder" style="height: 500px; background-image: url('images/IMG_14_PREM_MANDIR.jpg');">
+                <span class="placeholder-text">IMG_14: Prem Mandir Light Show</span>
+                <span class="hero-caption">🌟 Prem Mandir Light Show — The Grand Finale</span>
+            </div>
+
+            <p class="body-text centered fade-in">
+                The grand finale of our trip is the mesmerizing <span class="highlight">light show at Prem Mandir</span>—
+                a visual treat that will leave the whole family spellbound! Watch as the white marble temple transforms 
+                into a rainbow of colors, synchronized to devotional music. It's pure magic!
+            </p>
+
+            <div class="itinerary fade-in" style="border-left: 4px solid var(--deep-purple);">
+                <h3>📋 Day 4 Itinerary</h3>
+                <div class="timeline-item">
+                    <span class="time">10:00</span>
+                    <div class="time-content">
+                        <h4>Krishna Janmabhoomi Temple</h4>
+                        <p>Visit the sacred birthplace of Lord Krishna</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time">12:30</span>
+                    <div class="time-content">
+                        <h4>Lunch in Mathura</h4>
+                        <p>Enjoy local delicacies and famous Mathura pedas</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time">13:30</span>
+                    <div class="time-content">
+                        <h4>Afternoon Rest</h4>
+                        <p>Relax at the hotel before the evening activities</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time">16:00</span>
+                    <div class="time-content">
+                        <h4>ISKCON Vrindavan</h4>
+                        <p>Evening darshan and aarti</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time">17:30</span>
+                    <div class="time-content">
+                        <h4>Prem Mandir Light Show</h4>
+                        <p>The spectacular finale—colors, lights, and music!</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time">20:00</span>
+                    <div class="time-content">
+                        <h4>Return Journey</h4>
+                        <p>Drive back to Noida (or extend your stay)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <h3>Safe Travels Home! 🙏</h3>
+        <p>May this adventure create memories that last a lifetime.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.6;">The Great Indian Family Adventure • 4 Days of Wonder</p>
+    </footer>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Nav background change on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(44, 44, 44, 0.98)';
+            } else {
+                nav.style.background = 'rgba(44, 44, 44, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
